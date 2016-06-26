@@ -1,4 +1,5 @@
 import java.util.*;
+
 class Tree{
   int data;
   Tree left, right;
@@ -72,21 +73,24 @@ class IterativeTraversal{
     Tree current = root;
     Stack<Tree> st = new Stack<Tree>();
     while(true){
-      while(current.left != null){
-        st.push(current.right);
+      while(current != null){
+        if(current.right != null)
+          st.push(current.right);
         st.push(current);
         current = current.left;
       }
-
       if(st.isEmpty())
         break;
       current = st.pop();
       if(current.right != null){
+        st.pop();
         st.push(current);
         current = current.right;
       }
-      else{
+
+      if(current.right == null){
         System.out.print(current.data + ",");
+        current = null;
       }
     }
   }
