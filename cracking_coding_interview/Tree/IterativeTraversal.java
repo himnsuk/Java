@@ -1,3 +1,4 @@
+import java.util.*;
 class Tree{
   int data;
   Tree left, right;
@@ -11,30 +12,84 @@ class Tree{
 
 
 class IterativeTraversal{
-  // public static void preorderTraversal(Tree root){
-  //   if(root == null)
-  //     return;
-  //   preorderTraversal(root.left);
-  //   System.out.print(root.data + ",");
-  //   preorderTraversal(root.right);
-  // }
+  public static void preorderTraversal(Tree root){
+    Tree current = root;
+    Stack<Tree> st = new Stack<Tree>();
+    while(true){
+      while(current != null){
+        System.out.print(current.data + ",");
+        st.push(current);
+        current = current.left;
+      }
 
-  public static void inorderTraversal(Tree root){
-    if(root == null)
-      return;
-    System.out.print(root.data + ",");
-    inorderTraversal(root.left);
-    inorderTraversal(root.right);
+      if(st.isEmpty()){
+        break;
+      }
+
+      current = st.pop();
+      current = current.right;
+    }
   }
 
-  // public static void postorderTraversal(Tree root){
-  //   if(root == null)
-  //     return;
-  //   postorderTraversal(root.left);
-  //   postorderTraversal(root.right);
-  //   System.out.print(root.data + ",");
-  // }
+  public static void inorderTraversal(Tree root){
+    Tree current = root;
+    Stack<Tree> st = new Stack<Tree>();
+    while(true){
+      while(current != null){
+        st.push(current);
+        current = current.left;
+      }
 
+      if(st.isEmpty()){
+        break;
+      }
+
+      current = st.pop();
+      System.out.print(current.data + ",");
+      current = current.right;
+    }
+  }
+
+  public static void postorderTraversalWith2Stack(Tree root){
+    Tree current = root;
+    Stack<Tree> st1 = new Stack<Tree>();
+    Stack<Tree> st2 = new Stack<Tree>();
+    st1.push(current);
+    while(!st1.isEmpty()){
+      current = st1.pop();
+      st2.push(current);
+      if(current.left != null)
+        st1.push(current.left);
+      if(current.right != null)
+        st1.push(current.right);
+    }
+
+    while(!st2.isEmpty())
+      System.out.print(st2.pop().data + ",");
+  }
+
+  public static void postorderTraversalWith1Stack(Tree root){
+    Tree current = root;
+    Stack<Tree> st = new Stack<Tree>();
+    while(true){
+      while(current.left != null){
+        st.push(current.right);
+        st.push(current);
+        current = current.left;
+      }
+
+      if(st.isEmpty())
+        break;
+      current = st.pop();
+      if(current.right != null){
+        st.push(current);
+        current = current.right;
+      }
+      else{
+        System.out.print(current.data + ",");
+      }
+    }
+  }
   public static void main(String[] args){
     Tree root = new Tree(1);
     Tree first = new Tree(3);
@@ -45,13 +100,13 @@ class IterativeTraversal{
     root.right = second;
     root.left.left = third;
     root.right.right = fourth;
-    System.out.println("Preorder Traversal");
-    preorderTraversal(root);
-    System.out.println();
-    System.out.println("Inorder Traversal");
-    inorderTraversal(root);
-    System.out.println();
+    // System.out.println("Preorder Traversal");
+    // preorderTraversal(root);
+    // System.out.println();
+    // System.out.println("Inorder Traversal");
+    // inorderTraversal(root);
+    // System.out.println();
     System.out.println("Postorder Traversal");
-    postorderTraversal(root);
+    postorderTraversalWith1Stack(root);
   }
 }
