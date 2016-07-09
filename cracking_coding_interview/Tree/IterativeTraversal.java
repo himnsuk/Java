@@ -72,6 +72,8 @@ class IterativeTraversal{
   public static void postorderTraversalWith1Stack(Tree root){
     Tree current = root;
     Stack<Tree> st = new Stack<Tree>();
+    if(root == null)
+      return;
     while(true){
       while(current != null){
         if(current.right != null)
