@@ -15,6 +15,6 @@ class HashSetDemo{
     System.out.println("Print the array list" + al);
     String y = al.toString();
     System.out.println("Print convert to string value" + y);
-    // System.out.println(al.get());
+    System.out.println(al.contains("H"));
   }
 }
