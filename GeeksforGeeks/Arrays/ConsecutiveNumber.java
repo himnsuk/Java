@@ -1,8 +1,8 @@
 import java.util.*;
 import java.io.*;
 
-class Equilbrium{
-  static void equilbrium(int arr[]){
+class ConsecutiveNumber{
+  static void consecutive_number(int arr[]){
     int n = arr.length;
     int sum = 0;
     int leftSum = 0;
@@ -30,6 +30,6 @@ class Equilbrium{
   public static void main(String[] args){
     int[] arr = {-7, 1, 5, 2, -4, 3, 0};
     printArray(arr);
-    equilbrium(arr);
+    consecutive_number(arr);
   }
 }
