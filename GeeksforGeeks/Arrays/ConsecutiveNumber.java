@@ -2,24 +2,34 @@ import java.util.*;
 import java.io.*;
 
 class ConsecutiveNumber{
-  static boolean consecutive_number(int arr[]){
+  static void consecutive_number(int arr[]){
     int n = arr.length;
-    int max = arr[0], min = arr[0];
+    int sum = 0;
+    int leftSum = 0;
 
-    for(int i = 1; i < n; i++){
-      if(min > arr[i])
-        min = arr[i];
-      if(max < arr[i])
-        max = arr[i];
+    for(int i = 0; i < n; i++)
+    {
+      sum += arr[i];
     }
 
-    if((max - min + 1) == n)
-      return true;
-    return false;
+    for(int j = 0; j < n; j++){
+      sum -= arr[j];
+      if(leftSum == sum){
+        System.out.println(j);
+      }
+      leftSum += arr[j];
+    }
   }
 
+  static void printArray(int arr[]){
+    for(int p = 0; p < arr.length; p++){
+      System.out.print(arr[p] + ", ");
+    }
+    System.out.println();
+  }
   public static void main(String[] args){
-    int arr[] = {24, 25, 26, 27};
-    System.out.println(consecutive_number(arr));
+    int[] arr = {-7, 1, 5, 2, -4, 3, 0};
+    printArray(arr);
+    consecutive_number(arr);
   }
 }
