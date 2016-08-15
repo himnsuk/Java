@@ -20,13 +20,19 @@ class LCM{
 
     return (x*y)/p;
   }
+  
+  public int gcd(int a, int b){
+    if(b == 0)
+      return a;
+    else
+      return gcd(b, a%b);
+  }
 
   public static void main(String[] args){
-
-    LCM lcm = new LCM(5, 7);
-
+    LCM lcm = new LCM(16, 4);
     int z = lcm.getLCM(lcm.a, lcm.b);
-
     System.out.println(z);
+    int y = lcm.gcd(lcm.a, lcm.b);
+    System.out.println(y);
   }
 }
