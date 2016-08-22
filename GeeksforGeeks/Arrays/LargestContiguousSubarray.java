@@ -14,6 +14,9 @@ public class LargestContiguousSubarray{
         count = 1;
       }
     }
+    if(max_count < count){
+      max_count = count;
+    }
     return max_count;
   }
   public static void quickSort(int arr[], int l, int r){
