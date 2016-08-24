@@ -22,6 +22,12 @@ public class NutsBolts{
         arr[j] = arr[i];
         arr[i] = temp;
       }
+      else if(arr[j] == pivot){
+        char temp = arr[j];
+        arr[j] = arr[high];
+        arr[high] = temp;
+        j--;
+      }
     }
     char temp2 = arr[i+1];
     arr[i+1] = arr[high];
